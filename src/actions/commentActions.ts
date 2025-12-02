@@ -1,6 +1,6 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
+import { revalidateTag } from "next/cache";
 import { comments } from "@/lib/data";
 
 export async function addComment(postId: string, text: string) {
@@ -15,5 +15,6 @@ export async function addComment(postId: string, text: string) {
     createdAt: "just now",
   });
 
-  revalidatePath("/feed");
+  // Bust the comments cache for this specific post
+  revalidateTag(`comments:${postId}`);
 }
