@@ -3,6 +3,8 @@
 import { Suspense } from "react";
 import CommentsSection from "./CommentsSection";
 import CommentsSkeleton from "./CommentsSkeleton";
+import { WidgetErrorBoundary } from "./WidgetErrorBoundary.client";
+import LikeButton from "./LikeButton.client";
 
 interface PostCardProps {
   post: {
@@ -26,16 +28,21 @@ export default function PostCard({ post }: PostCardProps) {
 
       <div className="text-sm text-neutral-500 mb-2">{post.likes} ❤️ Likes</div>
 
-      {/* 🌊 Suspense Boundary for streaming comments */}
-      <Suspense
+      {/* ⚠️ Isolated error boundary for comments */}
+      <WidgetErrorBoundary
         fallback={
-          <div className="text-sm text-neutral-500">
-            <CommentsSkeleton />
+          <div className="text-sm text-red-600">
+            Failed to load comments for this post.
           </div>
         }
       >
-        <CommentsSection postId={post.id} />
-      </Suspense>
+        <Suspense fallback={<CommentsSkeleton />}>
+          <CommentsSection postId={post.id} />
+        </Suspense>
+      </WidgetErrorBoundary>
+      <div className="flex items-center gap-2">
+        <LikeButton postId={post.id} initialLikes={post.likes} />
+      </div>
     </div>
   );
 }
