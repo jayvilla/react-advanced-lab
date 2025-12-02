@@ -1,6 +1,6 @@
 // src/lib/data.ts
 
-export let posts = [
+export const posts = [
   {
     id: "1",
     author: "Jeff",
@@ -24,7 +24,7 @@ export let posts = [
   },
 ];
 
-export let comments = {
+export const comments = {
   "1": [
     { id: "c1", text: "Facts.", author: "Bay", createdAt: "1h ago" },
     { id: "c2", text: "Same here.", author: "Twin", createdAt: "30m ago" },
