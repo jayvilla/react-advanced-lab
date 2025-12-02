@@ -1,4 +1,4 @@
-# 📘 React Advanced Features Lab — Project 3
+# 📘 React Advanced Features Lab
 
 ### _Suspense • RSC • Streaming • Server Actions • Optimistic UI • Cache Tags_
 
