@@ -1,3 +1,5 @@
+// src/components/PostList.tsx
+
 import PostCard from "./PostCard";
 
 interface Post {
