@@ -1,3 +1,9 @@
+// src/components/PostCard.tsx
+
+import { Suspense } from "react";
+import CommentsSection from "./CommentsSection";
+import CommentsSkeleton from "./CommentsSkeleton";
+
 interface PostCardProps {
   post: {
     id: string;
@@ -18,7 +24,18 @@ export default function PostCard({ post }: PostCardProps) {
 
       <p className="mb-3 text-neutral-800">{post.content}</p>
 
-      <div className="text-sm text-neutral-500">{post.likes} ❤️ Likes</div>
+      <div className="text-sm text-neutral-500 mb-2">{post.likes} ❤️ Likes</div>
+
+      {/* 🌊 Suspense Boundary for streaming comments */}
+      <Suspense
+        fallback={
+          <div className="text-sm text-neutral-500">
+            <CommentsSkeleton />
+          </div>
+        }
+      >
+        <CommentsSection postId={post.id} />
+      </Suspense>
     </div>
   );
 }
