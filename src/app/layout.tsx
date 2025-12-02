@@ -1,4 +1,7 @@
-export const metadata = {
+import type { Metadata } from "next";
+import "./globals.css";
+
+export const metadata: Metadata = {
   title: "React Advanced Lab",
   description: "Suspense, RSC, Streaming, Server Actions",
 };
